@@ -131,12 +131,12 @@ ECHO          I                                                          I
 ECHO          ============================================================
 ECHO.
 ECHO.
-ECHO          1 =                               q =
-ECHO          2 =                               w =
-ECHO          3 =                               e =
-ECHO          4 =                               r =
-ECHO          5 =                               t =
-ECHO          6 =                               y =
+ECHO          1 = TNT SETUP                     q =
+ECHO          2 = Plutonia SETUP                w =
+ECHO          3 = DOOM SETUP                    e =
+ECHO          4 = DOOM II SETUP                 r =
+ECHO          5 = Duke3D SETUP                  t =
+ECHO          6 = Wolf3D SETUP                  y =
 ECHO          7 =                               u =
 ECHO          8 =                               i =
 ECHO          9 =                               o = Back
@@ -156,12 +156,42 @@ IF ERRORLEVEL 10 GOTO BEGIN
 IF ERRORLEVEL 9 GOTO BEGIN
 IF ERRORLEVEL 8 GOTO BEGIN
 IF ERRORLEVEL 7 GOTO BEGIN
-IF ERRORLEVEL 6 GOTO BEGIN
-IF ERRORLEVEL 5 GOTO BEGIN
+IF ERRORLEVEL 6 GOTO BOMBOSET
+IF ERRORLEVEL 5 GOTO ZOMBOSET
 IF ERRORLEVEL 4 GOTO BEGIN
-IF ERRORLEVEL 3 GOTO BEGIN
-IF ERRORLEVEL 2 GOTO BEGIN
-IF ERRORLEVEL 1 GOTO BEGIN
+IF ERRORLEVEL 3 GOTO WOMBOSET
+IF ERRORLEVEL 2 GOTO ONESET
+IF ERRORLEVEL 1 GOTO TWOSET
+GOTO SETIN
+
+:TWOSET
+cls
+@cd PLUTONIA
+@SETUP.exe
+GOTO SETIN
+
+:ONESET
+cls
+@cd TNT
+@SETUP.exe
+GOTO SETIN
+
+:WOMBOSET
+cls
+@cd DOOM
+@FDSETUP.exe
+GOTO SETIN
+
+:ZOMBOSET
+cls
+@cd DUKE3D
+@SETUP.exe
+GOTO SETIN
+
+:BOMBOSET
+cls
+@cd WOLF3D
+@SETUP.exe
 GOTO SETIN
 
 :PAGE2
