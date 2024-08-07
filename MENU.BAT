@@ -38,7 +38,7 @@ IF ERRORLEVEL ==8 GOTO PAGE0
 IF ERRORLEVEL ==7 GOTO DOMBO
 IF ERRORLEVEL ==6 GOTO BOMBO
 IF ERRORLEVEL ==5 GOTO ZOMBO
-IF ERRORLEVEL ==4 GOTO DOS
+IF ERRORLEVEL ==4 GOTO DOOM2
 IF ERRORLEVEL ==3 GOTO WOMBO
 IF ERRORLEVEL ==2 GOTO TWO
 IF ERRORLEVEL ==1 GOTO ONE
@@ -60,6 +60,11 @@ GOTO BEGIN
 cls
 @cd DOOM
 @FDOOM.exe
+GOTO BEGIN
+
+:DOOM2
+@cd DOOM2
+@DOOM2.exe
 GOTO BEGIN
 
 :ZOMBO
@@ -103,13 +108,20 @@ ECHO.
 ECHO.
 ECHO          1 = Terminal
 ECHO          2 = Back
-ECHO          3 = Quit
+ECHO          3 = Set IPX connection
+ECHO          4 = Quit
 CHOICE /N /C:123
 rem PICK A NUMBER (1, 2, 3, 4, 5, 6, 7, 8, 9)%1
 ECHO.
-IF ERRORLEVEL ==3 GOTO ZERO 
+IF ERRORLEVEL ==4 GOTO ZERO
+IF ERRORLEVEL ==3 GOTO IPXSET 
 IF ERRORLEVEL ==2 GOTO BEGIN
 IF ERRORLEVEL ==1 GOTO DOS
+GOTO PAGE0
+
+:IPXSET
+ipxnet connect localhost 10000
+ipxpkt.com 0x60
 GOTO PAGE0
 
 :SETIN
@@ -136,7 +148,7 @@ ECHO          2 = Plutonia SETUP                w =
 ECHO          3 = DOOM SETUP                    e =
 ECHO          4 = DOOM II SETUP                 r =
 ECHO          5 = Duke3D SETUP                  t =
-ECHO          6 = Wolf3D SETUP                  y =
+ECHO          6 =                               y =
 ECHO          7 =                               u =
 ECHO          8 =                               i =
 ECHO          9 =                               o = Back
@@ -158,7 +170,7 @@ IF ERRORLEVEL 8 GOTO BEGIN
 IF ERRORLEVEL 7 GOTO BEGIN
 IF ERRORLEVEL 6 GOTO BOMBOSET
 IF ERRORLEVEL 5 GOTO ZOMBOSET
-IF ERRORLEVEL 4 GOTO BEGIN
+IF ERRORLEVEL 4 GOTO DOOM2SET
 IF ERRORLEVEL 3 GOTO WOMBOSET
 IF ERRORLEVEL 2 GOTO ONESET
 IF ERRORLEVEL 1 GOTO TWOSET
@@ -180,6 +192,11 @@ GOTO SETIN
 cls
 @cd DOOM
 @FDSETUP.exe
+GOTO SETIN
+
+:DOOM2SET
+@cd DOOM2
+@SETUP.exe
 GOTO SETIN
 
 :ZOMBOSET
@@ -213,7 +230,7 @@ ECHO          I                                                          I
 ECHO          ============================================================
 ECHO.
 ECHO.
-ECHO          1 =                               q =
+ECHO          1 = Bad Apple                     q =
 ECHO          2 =                               w =
 ECHO          3 =                               e =
 ECHO          4 =                               r =
@@ -243,7 +260,12 @@ IF ERRORLEVEL 5 GOTO BEGIN
 IF ERRORLEVEL 4 GOTO BEGIN
 IF ERRORLEVEL 3 GOTO BEGIN
 IF ERRORLEVEL 2 GOTO BEGIN
-IF ERRORLEVEL 1 GOTO BEGIN
+IF ERRORLEVEL 1 GOTO BADAPP
+GOTO PAGE2
+
+:BADAPP
+@cd BADAPP
+@FMV.exe
 GOTO PAGE2
 
 :PAGE3
