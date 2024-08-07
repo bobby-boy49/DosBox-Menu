@@ -120,8 +120,8 @@ IF ERRORLEVEL ==1 GOTO DOS
 GOTO PAGE0
 
 :IPXSET
-ipxnet connect localhost 10000
-ipxpkt.com 0x60
+@ipxnet connect localhost 10000
+@ipxpkt.com 0x60
 GOTO PAGE0
 
 :SETIN
