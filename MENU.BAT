@@ -108,7 +108,7 @@ ECHO.
 ECHO.
 ECHO          1 = Terminal
 ECHO          2 = Back
-ECHO          3 = Set IPX connection
+ECHO          3 = Set IPX Connection
 ECHO          4 = Quit
 CHOICE /N /C:1234
 rem PICK A NUMBER (1, 2, 3, 4, 5, 6, 7, 8, 9)%1
@@ -120,7 +120,7 @@ IF ERRORLEVEL ==1 GOTO DOS
 GOTO PAGE0
 
 :IPXSET
-@ipxnet connect localhost 10000
+@IPXNET connect localhost 10000
 @ipxpkt.com 0x60
 GOTO PAGE0
 
@@ -168,7 +168,7 @@ IF ERRORLEVEL 10 GOTO BEGIN
 IF ERRORLEVEL 9 GOTO BEGIN
 IF ERRORLEVEL 8 GOTO BEGIN
 IF ERRORLEVEL 7 GOTO BEGIN
-IF ERRORLEVEL 6 GOTO BEGIN
+IF ERRORLEVEL 6 GOTO BOMBOSET
 IF ERRORLEVEL 5 GOTO ZOMBOSET
 IF ERRORLEVEL 4 GOTO DOOM2SET
 IF ERRORLEVEL 3 GOTO WOMBOSET
@@ -205,6 +205,12 @@ cls
 @SETUP.exe
 GOTO SETIN
 
+:BOMBOSET
+cls
+@cd WOLF3D
+@SETUP.exe
+GOTO SETIN
+
 :PAGE2
 cd \
 cls
@@ -225,7 +231,7 @@ ECHO          ============================================================
 ECHO.
 ECHO.
 ECHO          1 = Bad Apple                     q =
-ECHO          2 =                               w =
+ECHO          2 = Telehack                      w =
 ECHO          3 =                               e =
 ECHO          4 =                               r =
 ECHO          5 =                               t =
@@ -253,13 +259,20 @@ IF ERRORLEVEL 6 GOTO BEGIN
 IF ERRORLEVEL 5 GOTO BEGIN
 IF ERRORLEVEL 4 GOTO BEGIN
 IF ERRORLEVEL 3 GOTO BEGIN
-IF ERRORLEVEL 2 GOTO BEGIN
+IF ERRORLEVEL 2 GOTO TELEHA
 IF ERRORLEVEL 1 GOTO BADAPP
 GOTO PAGE2
 
 :BADAPP
 @cd BADAPP
 @FMV.exe
+GOTO PAGE2
+
+:TELEHA
+@IPXNET connect localhost 10000
+@ipxpkt.com 0x60
+@DHCP.exe
+@TELNET.exe telehack.com
 GOTO PAGE2
 
 :PAGE3
