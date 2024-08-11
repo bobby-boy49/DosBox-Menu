@@ -110,7 +110,7 @@ ECHO          1 = Terminal
 ECHO          2 = Back
 ECHO          3 = Set IPX connection
 ECHO          4 = Quit
-CHOICE /N /C:123
+CHOICE /N /C:1234
 rem PICK A NUMBER (1, 2, 3, 4, 5, 6, 7, 8, 9)%1
 ECHO.
 IF ERRORLEVEL ==4 GOTO ZERO
